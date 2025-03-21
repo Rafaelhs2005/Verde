@@ -1,23 +1,38 @@
 #include <stdio.h>
+#include <string.h>
 
-char combinador(char str1, char str2){
-    
-    char resp[200];
+void combinador(char *str1, char *str2, char *resultado) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+    int i = 0, j = 0, k = 0;
 
-    for(int i = 0; i < 200; i++){
-        resp[i] = str1[i];
-        resp[i+1] = str2[i]; 
+    // Alterna as letras das duas strings
+    while (i < len1 && j < len2) {
+        resultado[k++] = str1[i++];
+        resultado[k++] = str2[j++];
     }
 
-    return resp;
-    
+    // Adiciona as letras restantes da primeira string, se houver
+    while (i < len1) {
+        resultado[k++] = str1[i++];
+    }
+
+    // Adiciona as letras restantes da segunda string, se houver
+    while (j < len2) {
+        resultado[k++] = str2[j++];
+    }
+
+    // Finaliza a string resultante
+    resultado[k] = '\0';
 }
 
-int main(){
-    char str1[100], str2[100], resp[200];
-    scanf("%s", &str1);    
-    scanf("%s", &str2);
+int main() {
+    char str1[100], str2[100], resultado[200];
 
-    resp = combinador(str1, str2); 
-    
+    while (scanf("%s %s", str1, str2) != EOF) {
+        combinador(str1, str2, resultado);
+        printf("%s\n", resultado);
+    }
+
+    return 0;
 }
