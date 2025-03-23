@@ -4,13 +4,15 @@ import java.util.Scanner;
 public class aquecimento {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String linha = scanner.nextLine();
-        while (!linha.equals("FIM")) {
-            System.out.println(contarMaiuscula(linha));
-            linha = scanner.nextLine();
+        while (scanner.hasNext()) {
+            String linha = scanner.nextLine();
+            if (linha.equals("FIM")) {
+                break;
+                
+            }
+            System.out.println(contarMaiuscula(linha));   
         }
-        scanner.close();
-            
+        scanner.close();      
     }
 
     public static int contarMaiuscula(String str) {
